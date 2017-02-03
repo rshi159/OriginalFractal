@@ -1,22 +1,34 @@
 public void setup()
 {
 	size(720,720);
+	rectMode(CENTER);
 }
 public void draw()
 {
-	fractal(360,360,500);
+	fractal(360,360,200);
 }
 public void fractal(double x, double y, double siz) 
 {
-	if(siz<80)
+	if(siz>16)
 	{
+		fractal(x+siz/1.7,y+siz/1.7,siz/1.8);
+		fractal(x-siz/1.7,y+siz/1.7,siz/1.8);
+		fractal(x+siz/1.7,y-siz/1.7,siz/1.8);
+		fractal(x-siz/1.7,y-siz/1.7,siz/1.8);
+		rect((float)x,(float)y,(float)siz,(float)siz);
+	}
+	else if(size>4)
+	{
+		stroke(255);
+		fill((int)col,0,0);
 		ellipse((float)x,(float)y,(float)siz,(float)siz);
+		fractal(360+siz/8*sin((float)(x)),360+siz/8*cos((float)(x)),siz/1.1, col + 8);
 	}
 	else
 	{
-		fractal(x,y,siz/6.5);
-		fractal(360+(360-siz)*Math.cos(.5*x*PI/180),360+(360-siz)*Math.sin(.5*x*PI/180),siz/1.3);
-		fractal(360-(360-siz)*Math.cos(.5*x*PI/180),360-(360-siz)*Math.sin(.5*x*PI/180),siz/1.3);
+		fill(255,255,255);
+		rect((float)x,(float)y,(float)siz,(float)siz);
+
 	}
 	
 }
